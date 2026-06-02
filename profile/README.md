@@ -7,7 +7,7 @@
 <p>
   <img src="https://img.shields.io/badge/Open%20Source-Community%20First-0ea5e9?style=for-the-badge&logo=github&logoColor=white" />
   <img src="https://img.shields.io/badge/AI%20Agents-Under%20Control-7c3aed?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Built%20For-Devs%20%26%20Security-Teams-ec4899?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Built%20For-Developers%20%26%20Teams-ec4899?style=for-the-badge" />
 </p>
 
 <h3>🐾 Know your agents. Control what matters. AI with confidence.</h3>
@@ -29,13 +29,12 @@
 
 ## 🐾 Why OpenLeash exists
 
-AI agents are becoming part of how we build software.
+AI agents are an integral part of how we work and live.
 
 They write code.  
 They run commands.  
-They touch files.  
-They connect to tools.  
-They make decisions faster than humans can follow.
+They touch Storage/MCPs/Tools/Databases.  
+They make decisions faster than you can follow.
 
 That power is exciting — but it also creates a new kind of anxiety:
 
@@ -55,7 +54,7 @@ But with **clarity**, **control**, and **trust**.
 
 **OpenLeash is a control layer for AI agents.**
 
-It helps developers and organizations understand where agents are running, what they are doing, which tools they are using, and when a human should step in before something risky happens.
+It helps users, developers and organizations understand where agents are running, what they are doing, which tools they are using, and when a human should step in before something risky happens.
 
 Think of it as a calm command center for your agents.
 
