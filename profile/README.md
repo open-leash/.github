@@ -7,7 +7,7 @@
 <p>
   <img src="https://img.shields.io/badge/Open%20Source-Community%20First-0ea5e9?style=for-the-badge&logo=github&logoColor=white" />
   <img src="https://img.shields.io/badge/AI%20Agents-Under%20Control-7c3aed?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Built%20For-Developers%20%26%20Teams-ec4899?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Built%20For-Devs%20%26%20Security%20Teams-ec4899?style=for-the-badge" />
 </p>
 
 <h3>🐾 Know your agents. Control what matters. AI with confidence.</h3>
