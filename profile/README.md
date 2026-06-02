@@ -104,6 +104,10 @@ The future of agent control should not belong only to closed enterprise platform
 
 ## 🚀 Who OpenLeash is for
 
+### 👩‍💻 General "Claw" Family Agent Users
+
+For people running Hermes, OpenClaw, NanoClaw etc...
+
 ### 👩‍💻 Developers
 
 For people running Codex, Claude Code, Cursor, Cline, OpenCode, custom agents, and whatever comes next.
