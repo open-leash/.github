@@ -16,7 +16,7 @@
   <img src="https://img.shields.io/badge/Built%20For-Devs%20%26%20Security%20Teams-ec4899?style=for-the-badge" />
 </p>
 
-<h3>🐾 Know your agents. Control what matters. AI with confidence.</h3>
+<h3>🐾 Unleash your agents. Control what matters. AI with confidence.</h3>
 
 <br/>
 
@@ -30,6 +30,64 @@
 </pre>
 
 </div>
+
+---
+
+## 🧭 Repository map
+
+OpenLeash is split into focused repos so every surface can move independently while still feeling like one product.
+
+<div align="center">
+
+### Public OpenLeash repos
+
+| Repo | Purpose | Tech stack | Where it fits |
+|---|---|---|---|
+| [`desktop-client`](https://github.com/open-leash/desktop-client) | Installed desktop app, tray, local API, hook installer, approvals, local SQLite, and CLI. | TypeScript, Electron, SQLite | The local-first control point. Hooks call `127.0.0.1:9317` before anything else. |
+| [`client-api`](https://github.com/open-leash/client-api) | Client-facing managed API for hooks, evaluations, enrollment, mobile state, updates, audit, and approvals. | TypeScript, Node.js, Express, Postgres | Used by Private Cloud directly and wrapped by OpenLeash Cloud. |
+| [`dashboard-web`](https://github.com/open-leash/dashboard-web) | Admin/CISO dashboard for identity, users, policies, deployment, BYOK settings, approvals, and audit. | TypeScript, Next.js, React | The organization control room for Private Cloud and the shared base for Cloud. |
+| [`mobile-client`](https://github.com/open-leash/mobile-client) | iOS/Android approval companion for existing OpenLeash users. | Dart, Flutter | Lets the right human approve or deny held agent actions away from desktop. |
+| [`docs-web`](https://github.com/open-leash/docs-web) | Public docs site for installation, modes, APIs, architecture, self-hosting, and integrations. | TypeScript, Next.js, React | The manual for running OpenLeash clearly and safely. |
+| [`shared`](https://github.com/open-leash/shared) | Shared contracts, TypeScript types, schemas, and cross-app definitions. | TypeScript | Keeps app boundaries boring, typed, and consistent. |
+| [`.github`](https://github.com/open-leash/.github) | Organization profile and GitHub community metadata. | Markdown, GitHub profile config | The front door for `github.com/open-leash`. |
+
+</div>
+
+### 🖥 `desktop-client`
+
+The local OpenLeash experience: tray app, local API, approvals UI, hook installer, standalone SQLite, and deployment CLI.
+
+It is what makes OpenLeash local-first. In Local mode, it can work without Postgres, dashboard, mobile, hosted APIs, or internet access. In managed modes, it forwards to `client-api` or OpenLeash Cloud when available.
+
+### 🧠 `client-api`
+
+The managed decision API for desktop and mobile clients.
+
+It receives normalized agent events, evaluates policy, records audit, manages pending approvals, serves mobile state, enrolls endpoints, and ships Postgres migrations. Private Cloud runs it directly; OpenLeash Cloud wraps it with hosted tenancy and operations controls.
+
+### 📊 `dashboard-web`
+
+The team dashboard for identity, users, policies, deployment, BYOK configuration, approvals, and audit.
+
+It is intentionally operational and calm: clear tables, timelines, policy controls, and decision history instead of noisy security theater.
+
+### 📱 `mobile-client`
+
+The approval companion for iOS and Android.
+
+Mobile is sign-in only. Users create accounts from desktop or web, then use mobile to approve or deny risky agent actions when they are away from their computer.
+
+### 📚 `docs-web`
+
+The public documentation site.
+
+Docs cover installation, Local mode, Private Cloud, OpenLeash Cloud behavior, APIs, migrations, release workflow, identity providers, mobile setup, and integration guidance.
+
+### 🧩 `shared`
+
+The shared contract layer.
+
+It holds types and schemas that keep API, dashboard, desktop, mobile, and docs aligned without copy-pasting product assumptions across repos.
 
 ---
 
@@ -316,7 +374,7 @@ Let’s make sure it moves in the right direction.
 
 ### 🐾 OpenLeash
 
-**Know your agents.**
+**Unleash your agents.**
 
 Built for developers, security teams, agent users, and the future of AI work.
 
