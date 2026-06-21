@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0EA5E9,45:7C3AED,100:EC4899&height=230&section=header&text=OpenLeash&fontSize=58&fontColor=ffffff&fontAlignY=38&desc=The%20open%20agent%20management%20layer.&descSize=20&descAlignY=58" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0EA5E9,45:7C3AED,100:EC4899&height=230&section=header&text=OpenLeash&fontSize=58&fontColor=ffffff&fontAlignY=38&desc=Operating%20System%20for%20AI%20Agents.&descSize=20&descAlignY=58" width="100%" />
 
 <p>
   <a href="https://openleash.com"><img src="https://img.shields.io/badge/Website-openleash.com-0EA5E9?style=for-the-badge&logo=googlechrome&logoColor=white" /></a>
@@ -14,7 +14,7 @@
   <img src="https://img.shields.io/badge/Open%20Core-cloud%20%2B%20private%20cloud-EC4899?style=for-the-badge" />
 </p>
 
-<h3>Manage, extend, observe, and guide AI agents through one plugin-driven pipeline.</h3>
+<h3>The open operating system for managing, extending, observing, and guiding AI agents.</h3>
 
 <img src="./assets/openleash-pipeline-intro.png" alt="OpenLeash agent management and plugin pipeline" width="900" />
 
@@ -24,7 +24,7 @@
 
 ## What OpenLeash Is
 
-OpenLeash is an open agent management layer.
+OpenLeash is an open operating system for AI agents.
 
 It gives teams and builders one place to observe agent activity, shape prompts, reduce token cost, scan tools and skills, route approvals, enforce policy, and add new capabilities through plugins.
 
