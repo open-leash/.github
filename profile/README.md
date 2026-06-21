@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0EA5E9,45:7C3AED,100:EC4899&height=230&section=header&text=OpenLeash&fontSize=58&fontColor=ffffff&fontAlignY=38&desc=The%20open%20interception%20layer%20for%20AI%20agents.&descSize=20&descAlignY=58" width="100%" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0EA5E9,45:7C3AED,100:EC4899&height=230&section=header&text=OpenLeash&fontSize=58&fontColor=ffffff&fontAlignY=38&desc=The%20open%20agent%20management%20layer.&descSize=20&descAlignY=58" width="100%" />
 
 <p>
   <a href="https://openleash.com"><img src="https://img.shields.io/badge/Website-openleash.com-0EA5E9?style=for-the-badge&logo=googlechrome&logoColor=white" /></a>
@@ -14,9 +14,9 @@
   <img src="https://img.shields.io/badge/Open%20Core-cloud%20%2B%20private%20cloud-EC4899?style=for-the-badge" />
 </p>
 
-<h3>OpenLeash watches agent events, runs the right plugins, and returns the right decision or transformation.</h3>
+<h3>Manage, extend, observe, and guide AI agents through one plugin-driven pipeline.</h3>
 
-<img src="./assets/openleash-pipeline-intro.png" alt="OpenLeash agent interception and plugin pipeline" width="900" />
+<img src="./assets/openleash-pipeline-intro.png" alt="OpenLeash agent management and plugin pipeline" width="900" />
 
 </div>
 
@@ -24,13 +24,15 @@
 
 ## What OpenLeash Is
 
-OpenLeash is an interception layer for AI agents.
+OpenLeash is an open agent management layer.
 
-An agent does something: submits a prompt, calls a tool, starts a session, changes a skill, produces a response, or touches an MCP server. OpenLeash catches that moment, normalizes it into an event, runs the plugins subscribed to that event, and returns a result when the agent needs one.
+It gives teams and builders one place to observe agent activity, shape prompts, reduce token cost, scan tools and skills, route approvals, enforce policy, and add new capabilities through plugins.
+
+An agent does something: submits a prompt, calls a tool, starts a session, changes a skill, produces a response, or touches an MCP server. OpenLeash catches that moment, turns it into an event, runs the plugins subscribed to that event, and returns a result when the agent needs one.
 
 ```text
 agent action
-  -> OpenLeash intercepts
+  -> OpenLeash observes it
   -> OpenLeash emits a normalized event
   -> matching plugins run in order
   -> OpenLeash returns allow, deny, ask, transformed prompt, inventory, audit, or metadata
