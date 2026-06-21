@@ -1,383 +1,197 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0EA5E9,45:7C3AED,100:EC4899&height=230&section=header&text=OpenLeash&fontSize=58&fontColor=ffffff&fontAlignY=38&desc=Control%20your%20agents.&descSize=20&descAlignY=58" width="100%" />
-
-<br/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0EA5E9,45:7C3AED,100:EC4899&height=230&section=header&text=OpenLeash&fontSize=58&fontColor=ffffff&fontAlignY=38&desc=The%20open%20interception%20layer%20for%20AI%20agents.&descSize=20&descAlignY=58" width="100%" />
 
 <p>
-  <a href="https://openleash.com"><img src="https://img.shields.io/badge/Website-openleash.com-0ea5e9?style=for-the-badge&logo=googlechrome&logoColor=white" /></a>
-  <a href="https://docs.openleash.com"><img src="https://img.shields.io/badge/Docs-docs.openleash.com-7c3aed?style=for-the-badge&logo=readthedocs&logoColor=white" /></a>
-  <img src="https://img.shields.io/badge/Open%20Source-Community%20First-ec4899?style=for-the-badge&logo=github&logoColor=white" />
+  <a href="https://openleash.com"><img src="https://img.shields.io/badge/Website-openleash.com-0EA5E9?style=for-the-badge&logo=googlechrome&logoColor=white" /></a>
+  <a href="https://docs.openleash.com"><img src="https://img.shields.io/badge/Docs-docs.openleash.com-7C3AED?style=for-the-badge&logo=readthedocs&logoColor=white" /></a>
+  <a href="https://github.com/open-leash/plugins"><img src="https://img.shields.io/badge/Plugins-events%20%2B%20capabilities-EC4899?style=for-the-badge&logo=typescript&logoColor=white" /></a>
 </p>
 
 <p>
-  <img src="https://img.shields.io/badge/AI%20Agents-Observable-0ea5e9?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Risky%20Actions-Human%20Checkpoints-7c3aed?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Built%20For-Devs%20%26%20Security%20Teams-ec4899?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Agent%20Hooks-normalized-0EA5E9?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Pipeline-plugin%20driven-7C3AED?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Open%20Core-cloud%20%2B%20private%20cloud-EC4899?style=for-the-badge" />
 </p>
 
-<h3>🐾 Unleash your agents. Control what matters. AI with confidence.</h3>
+<h3>OpenLeash watches agent events, runs the right plugins, and returns the right decision or transformation.</h3>
 
-<br/>
-
-<pre align="center">
-╔════════════════════════════════════════════════════════════╗
-║                                                            ║
-║        AGENTS ARE POWERFUL.                               ║
-║        HUMANS SHOULD STAY IN CONTROL.                     ║
-║                                                            ║
-╚════════════════════════════════════════════════════════════╝
-</pre>
+<img src="./assets/openleash-pipeline-intro.png" alt="OpenLeash agent interception and plugin pipeline" width="900" />
 
 </div>
 
 ---
 
-## 🧭 Repository map
+## What OpenLeash Is
 
-OpenLeash is split into focused repos so every surface can move independently while still feeling like one product.
+OpenLeash is an interception layer for AI agents.
 
-<div align="center">
+An agent does something: submits a prompt, calls a tool, starts a session, changes a skill, produces a response, or touches an MCP server. OpenLeash catches that moment, normalizes it into an event, runs the plugins subscribed to that event, and returns a result when the agent needs one.
 
-### Public OpenLeash repos
+```text
+agent action
+  -> OpenLeash intercepts
+  -> OpenLeash emits a normalized event
+  -> matching plugins run in order
+  -> OpenLeash returns allow, deny, ask, transformed prompt, inventory, audit, or metadata
+```
 
-| Repo | Purpose | Tech stack | Where it fits |
-|---|---|---|---|
-| [`desktop-client`](https://github.com/open-leash/desktop-client) | Installed desktop app, tray, local API, hook installer, approvals, local SQLite, and CLI. | TypeScript, Electron, SQLite | The local-first control point. Hooks call `127.0.0.1:9317` before anything else. |
-| [`client-api`](https://github.com/open-leash/client-api) | Client-facing managed API for hooks, evaluations, enrollment, mobile state, updates, audit, and approvals. | TypeScript, Node.js, Express, Postgres | Used by Private Cloud directly and wrapped by OpenLeash Cloud. |
-| [`dashboard-web`](https://github.com/open-leash/dashboard-web) | Admin/CISO dashboard for identity, users, policies, deployment, BYOK settings, approvals, and audit. | TypeScript, Next.js, React | The organization control room for Private Cloud and the shared base for Cloud. |
-| [`mobile-client`](https://github.com/open-leash/mobile-client) | iOS/Android approval companion for existing OpenLeash users. | Dart, Flutter | Lets the right human approve or deny held agent actions away from desktop. |
-| [`docs-web`](https://github.com/open-leash/docs-web) | Public docs site for installation, modes, APIs, architecture, self-hosting, and integrations. | TypeScript, Next.js, React | The manual for running OpenLeash clearly and safely. |
-| [`shared`](https://github.com/open-leash/shared) | Shared contracts, TypeScript types, schemas, and cross-app definitions. | TypeScript | Keeps app boundaries boring, typed, and consistent. |
-| [`.github`](https://github.com/open-leash/.github) | Organization profile and GitHub community metadata. | Markdown, GitHub profile config | The front door for `github.com/open-leash`. |
-
-</div>
-
-### 🖥 `desktop-client`
-
-The local OpenLeash experience: tray app, local API, approvals UI, hook installer, standalone SQLite, and deployment CLI.
-
-It is what makes OpenLeash local-first. In Local mode, it can work without Postgres, dashboard, mobile, hosted APIs, or internet access. In managed modes, it forwards to `client-api` or OpenLeash Cloud when available.
-
-### 🧠 `client-api`
-
-The managed decision API for desktop and mobile clients.
-
-It receives normalized agent events, evaluates policy, records audit, manages pending approvals, serves mobile state, enrolls endpoints, and ships Postgres migrations. Private Cloud runs it directly; OpenLeash Cloud wraps it with hosted tenancy and operations controls.
-
-### 📊 `dashboard-web`
-
-The team dashboard for identity, users, policies, deployment, BYOK configuration, approvals, and audit.
-
-It is intentionally operational and calm: clear tables, timelines, policy controls, and decision history instead of noisy security theater.
-
-### 📱 `mobile-client`
-
-The approval companion for iOS and Android.
-
-Mobile is sign-in only. Users create accounts from desktop or web, then use mobile to approve or deny risky agent actions when they are away from their computer.
-
-### 📚 `docs-web`
-
-The public documentation site.
-
-Docs cover installation, Local mode, Private Cloud, OpenLeash Cloud behavior, APIs, migrations, release workflow, identity providers, mobile setup, and integration guidance.
-
-### 🧩 `shared`
-
-The shared contract layer.
-
-It holds types and schemas that keep API, dashboard, desktop, mobile, and docs aligned without copy-pasting product assumptions across repos.
+That makes OpenLeash bigger than a security product. Security is one important use case, but the same pipeline also handles token compression, prompt shaping, MCP inventory, skill scanning, audit context, approvals, policy decisions, and future community-built agent features.
 
 ---
 
-## 🐾 Why OpenLeash exists
+## Real Examples
 
-AI agents are becoming part of every workflow.
+```text
+User submits a long prompt
+  -> event: prompt.beforeSubmit
+  -> prompt-compression reduces token cost
+  -> dlp checks the final prompt
+  -> security-evaluator decides whether to continue
+```
 
-They write code.  
-They run commands.  
-They touch SaaS apps, MCPs, cloud resources, files, databases, tickets, emails, calendars, repos, and production systems.  
-They make decisions faster than humans can follow.
+```text
+Agent calls a tool or MCP server
+  -> event: tool.beforeUse
+  -> security-evaluator checks policy
+  -> mcp-scanner records inventory and audit context
+  -> OpenLeash returns allow, ask, or deny
+```
 
-That power is useful — but it creates a new kind of anxiety:
+```text
+OpenLeash detects a new agent skill
+  -> event: skill.changed
+  -> skill-scanner reviews the skill
+  -> OpenLeash stores the finding or asks for review
+```
 
-> **“What exactly is my agent doing right now?”**
-
-OpenLeash exists to answer that question.
-
-Not with fear.  
-Not with hype.  
-Not with another black-box dashboard.
-
-But with **clarity**, **control**, and **trust**.
-
----
-
-## ✨ The idea
-
-**OpenLeash is a control layer for AI agents.**
-
-It helps users, developers, and organizations understand where agents are running, what they are doing, which tools they are using, and when a human should step in before something risky happens.
-
-Think of it as a calm command center for your agents.
-
-Not a cage.  
-**A leash.**
-
-<div align="center">
-
-### 🌐 Start here
-
-<a href="https://openleash.com"><strong>openleash.com</strong></a> · <a href="https://docs.openleash.com"><strong>docs.openleash.com</strong></a>
-
-</div>
+```text
+Agent finishes work
+  -> event: agent.response
+  -> response-aware plugins can evaluate output, add audit context, or trigger follow-up workflows
+```
 
 ---
 
-## 🚀 Who OpenLeash is for
+## Why It Exists
 
-OpenLeash is for **anyone using agents** — from a solo developer running a coding agent locally, to a CISO trying to understand what hundreds of agents are doing across SaaS, cloud, code, and production.
+Agents are leaving the chat box.
 
-<div align="center">
+They read repos, edit files, call tools, run shell commands, browse SaaS apps, touch tickets, inspect databases, interact with MCP servers, and work across local and cloud environments.
 
-### Agent platforms, coding agents, enterprise agents, SaaS agents — one control layer.
+The hard problem is not only "block dangerous things." It is:
 
-</div>
+- What did the agent try to do?
+- Which tools and MCP servers did it use?
+- What context did it send?
+- Which plugin changed or checked the request?
+- Was a human asked?
+- What should happen next?
 
-### 🏢 SaaS & enterprise agent users
-
-For teams adopting agents inside business platforms, customer workflows, internal operations, and enterprise automation.
-
-<p>
-  <img src="https://img.shields.io/badge/Salesforce-Agentforce-00A1E0?style=for-the-badge&logo=salesforce&logoColor=white" />
-  <img src="https://img.shields.io/badge/Google-Vertex%20AI%20Agent%20Builder-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white" />
-  <img src="https://img.shields.io/badge/Azure-AI%20Foundry%20Agents-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white" />
-  <img src="https://img.shields.io/badge/Microsoft-Copilot%20Agents-5E5E5E?style=for-the-badge&logo=microsoft&logoColor=white" />
-  <img src="https://img.shields.io/badge/AWS-Bedrock%20Agents-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white" />
-</p>
-
-You want adoption, but you also want visibility, policy, auditability, and human checkpoints before agents touch sensitive workflows.
-
-### 👩‍💻 Coding agent users
-
-For people running agents that read code, edit files, call tools, execute shell commands, open PRs, and touch real engineering workflows.
-
-<p>
-  <img src="https://img.shields.io/badge/OpenAI-Codex-412991?style=for-the-badge&logo=openai&logoColor=white" />
-  <img src="https://img.shields.io/badge/Anthropic-Claude%20Code-D97757?style=for-the-badge&logo=anthropic&logoColor=white" />
-  <img src="https://img.shields.io/badge/GitHub-Copilot-181717?style=for-the-badge&logo=githubcopilot&logoColor=white" />
-  <img src="https://img.shields.io/badge/Cursor-Agent-000000?style=for-the-badge&logo=cursor&logoColor=white" />
-  <img src="https://img.shields.io/badge/Cline-Agent-3B82F6?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/OpenCode-Agent-111827?style=for-the-badge&logo=opencodeinitiative&logoColor=white" />
-  <img src="https://img.shields.io/badge/Devin-Agent-6B7280?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Windsurf-Agent-0EA5E9?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Aider-Agent-8B5CF6?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Gemini-CLI-4285F4?style=for-the-badge&logo=googlegemini&logoColor=white" />
-</p>
-
-You want speed — but you also want to know when your agent is about to do something dumb.
-
-### 🧠 Open-source / hacker agent users
-
-For people running experimental, self-hosted, local-first, or community-built agents.
-
-<p>
-  <img src="https://img.shields.io/badge/Hermes-Agent-7C3AED?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/OpenClaw-Agent-0EA5E9?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/NanoClaw-Agent-EC4899?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/OpenClaw%20Ecosystem-Community-111827?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Custom%20Agents-Bring%20Your%20Own-10B981?style=for-the-badge" />
-</p>
-
-You are experimenting fast. OpenLeash gives you a way to keep that energy without flying completely blind.
-
-### 🛡 Security teams
-
-For teams that need agent visibility, practical policies, approvals, audit trails, and safer rollout across the company.
-
-Not **“ban agents.”**  
-Not **“trust everything.”**  
-Something practical in the middle.
-
-### 🧩 Builders of the agent ecosystem
-
-For people building MCP servers, tools, automations, SaaS agents, workflows, orchestration layers, and agent platforms.
-
-OpenLeash wants to become part of the shared safety layer for this new world.
+OpenLeash is built to make those answers clear, programmable, and auditable.
 
 ---
 
-## 🔥 What OpenLeash helps with
+## The Plugin Model
 
-<div align="center">
+Plugins are small, focused features that subscribe to OpenLeash events.
 
-| 👀 Visibility | 🛑 Control | 🤝 Confidence |
+Each plugin has:
+
+- a manifest with name, version, events, permissions, settings, effects, and ordering
+- a handler that receives event input
+- stable capabilities for storage, model access, notifications, DLP, prompt compression, audit, and policy checks
+- typed results that OpenLeash merges into the final agent response
+
+Plugins do not import OpenLeash internals. They ask for capabilities and OpenLeash decides how those capabilities are fulfilled in OpenLeash Cloud or Private Cloud.
+
+Start here: [`open-leash/plugins`](https://github.com/open-leash/plugins)
+
+---
+
+## First-Party Plugins
+
+| Plugin | Event | What it does |
 |---|---|---|
-| See what agents are doing | Catch risky actions before they happen | Let teams adopt agents safely |
-| Understand where agents run | Add human approval flows | Give developers freedom |
-| Track tools, MCPs, SaaS actions, and integrations | Apply practical policies | Reduce blind trust |
-| Follow local and cloud agents | Notify the right human | Keep humans in the loop |
-
-</div>
-
----
-
-## 🧨 Examples of things worth controlling
-
-Agents are not dangerous because they are evil.
-
-They are dangerous because they are fast, confident, connected, and sometimes wrong.
-
-OpenLeash is built for checkpoints around actions like:
-
-- Deleting files, branches, buckets, tables, or databases
-- Running destructive shell commands
-- Pushing code or opening production-impacting PRs
-- Editing infrastructure, CI/CD, secrets, or IAM policies
-- Sending messages, emails, tickets, or customer-facing updates
-- Calling sensitive SaaS tools or MCP servers
-- Touching production data
-- Spending money through cloud, API, or SaaS actions
+| [`prompt-compression`](https://github.com/open-leash/plugins/tree/main/plugins/prompt-compression) | `prompt.beforeSubmit` | Reduces prompt size before downstream checks. |
+| [`dlp`](https://github.com/open-leash/plugins/tree/main/plugins/dlp) | `prompt.beforeSubmit` | Masks or blocks sensitive data in prompts. |
+| [`security-evaluator`](https://github.com/open-leash/plugins/tree/main/plugins/security-evaluator) | prompts, tools, responses | Applies policy and can allow, deny, or ask. |
+| [`mcp-scanner`](https://github.com/open-leash/plugins/tree/main/plugins/mcp-scanner) | `tool.beforeUse`, `tool.afterUse` | Inventories MCP tool usage for audit and review. |
+| [`skill-scanner`](https://github.com/open-leash/plugins/tree/main/plugins/skill-scanner) | startup, agent detected, skill changed | Reviews agent skills and records findings. |
 
 ---
 
-## 💛 What we believe
+## Who It Is For
 
-<table>
-<tr>
-<td width="50%">
+### Developers using coding agents
 
-### 🤖 Agents should be powerful
+Use OpenLeash to understand and shape what agents do across prompts, tools, shell commands, files, MCP servers, and code workflows.
 
-They should move fast, automate boring work, and help humans build more.
+### Teams adopting agents at work
 
-</td>
-<td width="50%">
+Use OpenLeash to configure plugins, route approvals, track usage, review audit history, and roll out agent controls through OpenLeash Cloud or Private Cloud.
 
-### 👀 Humans should stay aware
+### Security and platform teams
 
-You should never feel blind while an agent works across your code, cloud, files, SaaS apps, or tools.
+Use OpenLeash to make agent behavior visible and enforceable without banning the tools people actually want to use.
 
-</td>
-</tr>
-<tr>
-<td width="50%">
+### Plugin builders
 
-### 🛑 Risk needs checkpoints
-
-Deleting data, pushing code, changing infrastructure, modifying secrets, or touching production should never happen unnoticed.
-
-</td>
-<td width="50%">
-
-### 🌍 This should be open
-
-The future of agent control should not belong only to closed enterprise platforms.
-
-</td>
-</tr>
-</table>
+Build focused pipeline features: cost reducers, prompt transforms, approval workflows, MCP inventory plugins, policy packs, session analyzers, data classifiers, and more.
 
 ---
 
-## 🧬 The vibe
+## Repository Map
 
-OpenLeash is not here to make AI agents boring.
-
-It is here to make them **usable**.
-
-The best tools are not the ones that scare people into stopping.  
-They are the ones that give people enough confidence to move faster.
-
-**More confidence.**  
-**More visibility.**  
-**More control.**  
-**Less chaos.**
-
----
-
-## 🌱 Community first
-
-OpenLeash is for the builders who are already experimenting.
-
-The devs running local agents.  
-The teams trying to understand what “agent governance” actually means.  
-The security people who want practical controls instead of slideware.  
-The hackers who know the future is messy, but want to shape it anyway.
-
-If that sounds like you, you are in the right place.
+| Repo | Purpose |
+|---|---|
+| [`main-web`](https://github.com/open-leash/main-web) | Product website. |
+| [`docs-web`](https://github.com/open-leash/docs-web) | Public documentation site. |
+| [`plugins`](https://github.com/open-leash/plugins) | First-party plugins, examples, and plugin builder docs. |
+| [`shared`](https://github.com/open-leash/shared) | Shared TypeScript contracts and event/plugin types. |
+| [`desktop-client`](https://github.com/open-leash/desktop-client) | Installed desktop app, tray, local relay API, and hook installer. |
+| [`client-api`](https://github.com/open-leash/client-api) | Client-facing API for hooks, plugin pipeline, evaluations, approvals, audit, enrollment, and updates. |
+| [`dashboard-api`](https://github.com/open-leash/dashboard-api) | Admin API for organization setup, policy, users, plugin settings, audit, and usage. |
+| [`dashboard-web`](https://github.com/open-leash/dashboard-web) | Admin/CISO dashboard for organizations. |
+| [`mobile-client`](https://github.com/open-leash/mobile-client) | Mobile approval companion for existing OpenLeash users. |
+| [`cloud-client-api`](https://github.com/open-leash/cloud-client-api) | Thin hosted wrapper around the public client API. |
+| [`cloud-dashboard-api`](https://github.com/open-leash/cloud-dashboard-api) | Thin hosted wrapper around the public dashboard API. |
+| [`cloud-dashboard-web`](https://github.com/open-leash/cloud-dashboard-web) | Thin hosted wrapper around the public dashboard web app. |
 
 ---
 
-## 🛠 What is coming
+## Product Shape
 
-OpenLeash is growing around a simple mission:
+OpenLeash has two backend-backed deployment paths:
 
-> **Make AI agents observable, controllable, and trusted.**
+- **OpenLeash Cloud**: hosted by OpenLeash for individuals and organizations.
+- **Private Cloud**: customer-hosted open-source core for organizations that need their own API, dashboard, database, identity, logs, and operational controls.
 
-Expect work around:
-
-- 🖥 Local agent visibility
-- ☁️ Cloud agent activity tracking
-- 🏢 SaaS agent visibility
-- 📲 Mobile approvals
-- 🛑 Human approval flows
-- 🧠 Agent policy rules
-- 🧰 Safer MCP/tool usage
-- 🧩 Community rule packs
-- 📊 Better dashboards for individuals and teams
-- 🔎 Audit trails for risky agent actions
-- 🔐 Security-friendly deployment models
+The desktop client still receives local hooks first at `127.0.0.1`, but account state, plugin settings, policy, approvals, audit, and evaluation come from the configured backend.
 
 ---
 
-## 🧭 Our north star
+## What We Believe
 
-AI agents will not stay inside one IDE, one laptop, one SaaS product, or one cloud vendor.
+Agents should be useful, fast, and connected.
 
-They will move across devices, clouds, tools, repos, browsers, databases, inboxes, tickets, calendars, customer systems, and production environments.
+Humans should still understand what happened.
 
-OpenLeash is being built for that world.
+Teams should be able to adopt agents without turning every workflow into blind trust or blanket denial.
 
-A world where agents are everywhere — and humans still stay in control.
-
----
-
-## 🤝 Join us
-
-OpenLeash is early, open, and community-driven.
-
-Visit the website.  
-Read the docs.  
-Star the repos.  
-Open issues.  
-Share ideas.  
-Build integrations.  
-Challenge assumptions.  
-Help define what safe agent adoption should look like.
-
-<div align="center">
-
-<a href="https://openleash.com"><img src="https://img.shields.io/badge/Visit-openleash.com-0ea5e9?style=for-the-badge&logo=googlechrome&logoColor=white" /></a>
-<a href="https://docs.openleash.com"><img src="https://img.shields.io/badge/Read-docs.openleash.com-7c3aed?style=for-the-badge&logo=readthedocs&logoColor=white" /></a>
-
-</div>
-
-This space is moving fast.
-
-Let’s make sure it moves in the right direction.
+OpenLeash is the middle layer: observable, configurable, extensible, and open.
 
 ---
 
 <div align="center">
 
-### 🐾 OpenLeash
+### Start Here
 
-**Unleash your agents.**
+<a href="https://openleash.com"><img src="https://img.shields.io/badge/Visit-openleash.com-0EA5E9?style=for-the-badge&logo=googlechrome&logoColor=white" /></a>
+<a href="https://docs.openleash.com"><img src="https://img.shields.io/badge/Read-docs.openleash.com-7C3AED?style=for-the-badge&logo=readthedocs&logoColor=white" /></a>
+<a href="https://github.com/open-leash/plugins"><img src="https://img.shields.io/badge/Build-plugins-EC4899?style=for-the-badge&logo=typescript&logoColor=white" /></a>
 
-Built for developers, security teams, agent users, and the future of AI work.
-
+<br/>
 <br/>
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0EA5E9,50:7C3AED,100:EC4899&height=120&section=footer" width="100%" />
