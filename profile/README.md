@@ -5,7 +5,7 @@
 <p>
   <a href="https://openleash.com"><img src="https://img.shields.io/badge/Website-openleash.com-0EA5E9?style=for-the-badge&logo=googlechrome&logoColor=white" /></a>
   <a href="https://docs.openleash.com"><img src="https://img.shields.io/badge/Docs-docs.openleash.com-7C3AED?style=for-the-badge&logo=readthedocs&logoColor=white" /></a>
-  <a href="https://github.com/open-leash/plugins"><img src="https://img.shields.io/badge/Plugins-events%20%2B%20capabilities-EC4899?style=for-the-badge&logo=typescript&logoColor=white" /></a>
+  <a href="https://github.com/open-leash?q=plugin-"><img src="https://img.shields.io/badge/Plugins-events%20%2B%20capabilities-EC4899?style=for-the-badge&logo=typescript&logoColor=white" /></a>
 </p>
 
 <p>
@@ -14,7 +14,7 @@
   <img src="https://img.shields.io/badge/Open%20Core-cloud%20%2B%20private%20cloud-EC4899?style=for-the-badge" />
 </p>
 
-<h3>The open operating system for managing, extending, observing, and guiding AI agents.</h3>
+<h3>The agent highway.</h3>
 
 <img src="./assets/openleash-pipeline-intro.png" alt="OpenLeash agent management and plugin pipeline" width="900" />
 
@@ -24,7 +24,7 @@
 
 ## What OpenLeash Is
 
-OpenLeash is an open operating system for AI agents.
+OpenLeash is the agent highway.
 
 It gives teams and builders one place to observe agent activity, shape prompts, reduce token cost, scan tools and skills, route approvals, enforce policy, and add new capabilities through plugins.
 
@@ -47,15 +47,17 @@ That makes OpenLeash bigger than a security product. Security is one important u
 ```text
 User submits a long prompt
   -> event: prompt.beforeSubmit
-  -> prompt-compression reduces token cost
-  -> dlp checks the final prompt
-  -> security-evaluator decides whether to continue
+  -> token-saver reduces token cost
+  -> data-leakage-prevention checks the final prompt
+  -> sensitive-access checks secret exposure and exfiltration risk
 ```
 
 ```text
 Agent calls a tool or MCP server
   -> event: tool.beforeUse
-  -> security-evaluator checks policy
+  -> sensitive-access checks secret access
+  -> blast-radius checks destructive scope
+  -> rules-enforcer checks policy
   -> mcp-scanner records inventory and audit context
   -> OpenLeash returns allow, ask, or deny
 ```
@@ -102,12 +104,12 @@ Each plugin has:
 
 - a manifest with name, version, events, permissions, settings, effects, and ordering
 - a handler that receives event input
-- stable capabilities for storage, model access, notifications, DLP, prompt compression, audit, and policy checks
+- stable primitive capabilities for evaluator LLM calls, plugin-scoped storage, notifications, signals, usage, logs, audit, and reviewed host context
 - typed results that OpenLeash merges into the final agent response
 
-Plugins do not import OpenLeash internals. They ask for capabilities and OpenLeash decides how those capabilities are fulfilled in OpenLeash Cloud or Private Cloud.
+Plugins do not import OpenLeash internals. They own their detection logic, prompts, schemas, parsing, and fallbacks. OpenLeash provides primitive capabilities and decides how those primitives are fulfilled in OpenLeash Cloud or Private Cloud.
 
-Start here: [`open-leash/plugins`](https://github.com/open-leash/plugins)
+Start with any first-party plugin repo under the `open-leash/plugin-*` pattern.
 
 ---
 
@@ -115,11 +117,13 @@ Start here: [`open-leash/plugins`](https://github.com/open-leash/plugins)
 
 | Plugin | Event | What it does |
 |---|---|---|
-| [`prompt-compression`](https://github.com/open-leash/plugins/tree/main/plugins/prompt-compression) | `prompt.beforeSubmit` | Reduces prompt size before downstream checks. |
-| [`dlp`](https://github.com/open-leash/plugins/tree/main/plugins/dlp) | `prompt.beforeSubmit` | Masks or blocks sensitive data in prompts. |
-| [`security-evaluator`](https://github.com/open-leash/plugins/tree/main/plugins/security-evaluator) | prompts, tools, responses | Applies policy and can allow, deny, or ask. |
-| [`mcp-scanner`](https://github.com/open-leash/plugins/tree/main/plugins/mcp-scanner) | `tool.beforeUse`, `tool.afterUse` | Inventories MCP tool usage for audit and review. |
-| [`skill-scanner`](https://github.com/open-leash/plugins/tree/main/plugins/skill-scanner) | startup, agent detected, skill changed | Reviews agent skills and records findings. |
+| [`plugin-token-saver`](https://github.com/open-leash/plugin-token-saver) | `prompt.beforeSubmit` | Reduces prompt size before downstream checks. |
+| [`plugin-data-leakage-prevention`](https://github.com/open-leash/plugin-data-leakage-prevention) | `prompt.beforeSubmit` | Masks or blocks sensitive data in prompts. |
+| [`plugin-sensitive-access`](https://github.com/open-leash/plugin-sensitive-access) | prompts, tools, responses | Detects secret-file reads, env dumps, and exfiltration attempts. |
+| [`plugin-blast-radius`](https://github.com/open-leash/plugin-blast-radius) | `tool.beforeUse` | Guards destructive tool and data operations. |
+| [`plugin-rules-enforcer`](https://github.com/open-leash/plugin-rules-enforcer) | prompts, tools, responses | Evaluates user and agent rules. |
+| [`plugin-mcp-scanner`](https://github.com/open-leash/plugin-mcp-scanner) | `tool.beforeUse`, `tool.afterUse` | Inventories MCP tool usage for audit and review. |
+| [`plugin-skill-scanner`](https://github.com/open-leash/plugin-skill-scanner) | startup, agent detected, skill changed | Reviews agent skills and records findings. |
 
 ---
 
@@ -149,7 +153,7 @@ Build focused pipeline features: cost reducers, prompt transforms, approval work
 |---|---|
 | [`main-web`](https://github.com/open-leash/main-web) | Product website. |
 | [`docs-web`](https://github.com/open-leash/docs-web) | Public documentation site. |
-| [`plugins`](https://github.com/open-leash/plugins) | First-party plugins, examples, and plugin builder docs. |
+| [`plugin-*`](https://github.com/open-leash?q=plugin-) | One public repository per first-party plugin. |
 | [`shared`](https://github.com/open-leash/shared) | Shared TypeScript contracts and event/plugin types. |
 | [`desktop-client`](https://github.com/open-leash/desktop-client) | Installed desktop app, tray, local relay API, and hook installer. |
 | [`client-api`](https://github.com/open-leash/client-api) | Client-facing API for hooks, plugin pipeline, evaluations, approvals, audit, enrollment, and updates. |
@@ -191,7 +195,7 @@ OpenLeash is the middle layer: observable, configurable, extensible, and open.
 
 <a href="https://openleash.com"><img src="https://img.shields.io/badge/Visit-openleash.com-0EA5E9?style=for-the-badge&logo=googlechrome&logoColor=white" /></a>
 <a href="https://docs.openleash.com"><img src="https://img.shields.io/badge/Read-docs.openleash.com-7C3AED?style=for-the-badge&logo=readthedocs&logoColor=white" /></a>
-<a href="https://github.com/open-leash/plugins"><img src="https://img.shields.io/badge/Build-plugins-EC4899?style=for-the-badge&logo=typescript&logoColor=white" /></a>
+<a href="https://github.com/open-leash?q=plugin-"><img src="https://img.shields.io/badge/Build-plugins-EC4899?style=for-the-badge&logo=typescript&logoColor=white" /></a>
 
 <br/>
 <br/>
