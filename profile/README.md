@@ -21,33 +21,33 @@
 
 ---
 
-## Core platform
+## 🧩 Core platform
 
 | Repository | What it does |
 |---|---|
-| [`desktop-client`](https://github.com/open-leash/desktop-client) | Installed tray app, local API, and hook installer for connecting developer agents to OpenLeash. |
-| [`client-api`](https://github.com/open-leash/client-api) | Client-facing API for hooks, evaluation, enrollment, mobile approvals, and updates. |
-| [`dashboard-api`](https://github.com/open-leash/dashboard-api) | Admin API for organization setup, users, policy, plugins, audit, and usage. |
-| [`dashboard-web`](https://github.com/open-leash/dashboard-web) | Organization dashboard for identity, deployment, policies, plugins, and audit history. |
-| [`mobile-client`](https://github.com/open-leash/mobile-client) | iOS and Android companion for reviewing and responding to approval requests. |
-| [`local-proxy`](https://github.com/open-leash/local-proxy) | Local AI-agent traffic proxy and policy-enforcement relay. |
-| [`provider-puller`](https://github.com/open-leash/provider-puller) | Scheduler that discovers and normalizes agent activity from hosted enterprise providers. |
-| [`shared`](https://github.com/open-leash/shared) | Shared TypeScript contracts, event schemas, and plugin types used across OpenLeash. |
-| [`docs-web`](https://github.com/open-leash/docs-web) | Source for the public OpenLeash documentation site. |
+| 🖥️ [`desktop-client`](https://github.com/open-leash/desktop-client) | Installed tray app, local API, and hook installer for connecting developer agents to OpenLeash. |
+| ⚡ [`client-api`](https://github.com/open-leash/client-api) | Client-facing API for hooks, evaluation, enrollment, mobile approvals, and updates. |
+| 🛡️ [`dashboard-api`](https://github.com/open-leash/dashboard-api) | Admin API for organization setup, users, policy, plugins, audit, and usage. |
+| 📊 [`dashboard-web`](https://github.com/open-leash/dashboard-web) | Organization dashboard for identity, deployment, policies, plugins, and audit history. |
+| 📱 [`mobile-client`](https://github.com/open-leash/mobile-client) | iOS and Android companion for reviewing and responding to approval requests. |
+| 🔀 [`local-proxy`](https://github.com/open-leash/local-proxy) | Local AI-agent traffic proxy and policy-enforcement relay. |
+| 🔄 [`provider-puller`](https://github.com/open-leash/provider-puller) | Scheduler that discovers and normalizes agent activity from hosted enterprise providers. |
+| 🧱 [`shared`](https://github.com/open-leash/shared) | Shared TypeScript contracts, event schemas, and plugin types used across OpenLeash. |
+| 📚 [`docs-web`](https://github.com/open-leash/docs-web) | Source for the public OpenLeash documentation site. |
 
-## First-party plugins
+## 🔌 First-party plugins
 
 | Repository | What it does |
 |---|---|
-| [`plugin-blast-radius`](https://github.com/open-leash/plugin-blast-radius) | Guards destructive tool calls and operations that affect broad sets of data. |
-| [`plugin-code-scanner`](https://github.com/open-leash/plugin-code-scanner) | Scans AI-generated code for security risks and reports structured findings. |
-| [`plugin-data-leakage-prevention`](https://github.com/open-leash/plugin-data-leakage-prevention) | Detects and masks sensitive data before it is sent in agent prompts. |
-| [`plugin-mcp-scanner`](https://github.com/open-leash/plugin-mcp-scanner) | Inventories MCP servers, tools, and calls for visibility and audit. |
-| [`plugin-rules-enforcer`](https://github.com/open-leash/plugin-rules-enforcer) | Evaluates agent activity against user- and organization-defined rules. |
-| [`plugin-sensitive-access`](https://github.com/open-leash/plugin-sensitive-access) | Detects secret access, environment-file reads, and possible exfiltration attempts. |
-| [`plugin-siem-exporter`](https://github.com/open-leash/plugin-siem-exporter) | Exports OpenLeash events and logs to SIEM destinations. |
-| [`plugin-skill-scanner`](https://github.com/open-leash/plugin-skill-scanner) | Reviews agent skills and reports suspicious or risky behavior. |
-| [`plugin-token-saver`](https://github.com/open-leash/plugin-token-saver) | Reduces prompt token usage before model calls to lower cost and latency. |
+| 💥 [`plugin-blast-radius`](https://github.com/open-leash/plugin-blast-radius) | Guards destructive tool calls and operations that affect broad sets of data. |
+| 🔍 [`plugin-code-scanner`](https://github.com/open-leash/plugin-code-scanner) | Scans AI-generated code for security risks and reports structured findings. |
+| 🔒 [`plugin-data-leakage-prevention`](https://github.com/open-leash/plugin-data-leakage-prevention) | Detects and masks sensitive data before it is sent in agent prompts. |
+| 🧰 [`plugin-mcp-scanner`](https://github.com/open-leash/plugin-mcp-scanner) | Inventories MCP servers, tools, and calls for visibility and audit. |
+| 📏 [`plugin-rules-enforcer`](https://github.com/open-leash/plugin-rules-enforcer) | Evaluates agent activity against user- and organization-defined rules. |
+| 🔐 [`plugin-sensitive-access`](https://github.com/open-leash/plugin-sensitive-access) | Detects secret access, environment-file reads, and possible exfiltration attempts. |
+| 📡 [`plugin-siem-exporter`](https://github.com/open-leash/plugin-siem-exporter) | Exports OpenLeash events and logs to SIEM destinations. |
+| 🧠 [`plugin-skill-scanner`](https://github.com/open-leash/plugin-skill-scanner) | Reviews agent skills and reports suspicious or risky behavior. |
+| 🪙 [`plugin-token-saver`](https://github.com/open-leash/plugin-token-saver) | Reduces prompt token usage before model calls to lower cost and latency. |
 
 ---
 
