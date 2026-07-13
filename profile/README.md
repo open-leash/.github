@@ -9,6 +9,13 @@
 </p>
 
 <p>
+  <a href="https://github.com/orgs/open-leash/repositories"><img src="https://img.shields.io/badge/Star-our%20repositories-F59E0B?style=for-the-badge&logo=github&logoColor=white" /></a>
+  <a href="https://github.com/open-leash"><img src="https://img.shields.io/badge/Follow-OpenLeash-181717?style=for-the-badge&logo=github&logoColor=white" /></a>
+</p>
+
+<p><strong>If OpenLeash is useful to you, star the repositories you use and follow the organization to keep up with new releases, plugins, and project updates.</strong></p>
+
+<p>
   <img src="https://img.shields.io/badge/Agent%20Hooks-normalized-0EA5E9?style=for-the-badge" />
   <img src="https://img.shields.io/badge/Pipeline-plugin%20driven-7C3AED?style=for-the-badge" />
   <img src="https://img.shields.io/badge/Open%20Core-cloud%20%2B%20private%20cloud-EC4899?style=for-the-badge" />
@@ -147,22 +154,37 @@ Build focused pipeline features: cost reducers, prompt transforms, approval work
 
 ---
 
-## Repository Map
+## Explore All OpenLeash Repositories
 
-| Repo | Purpose |
+Every public OpenLeash repository is listed below. Open the project that interests you, read its setup guide, and give it a star if you want to support its development.
+
+### Core platform
+
+| Repository | What it does |
 |---|---|
-| [`main-web`](https://github.com/open-leash/main-web) | Product website. |
-| [`docs-web`](https://github.com/open-leash/docs-web) | Public documentation site. |
-| [`plugin-*`](https://github.com/open-leash?q=plugin-) | One public repository per first-party plugin. |
-| [`shared`](https://github.com/open-leash/shared) | Shared TypeScript contracts and event/plugin types. |
-| [`desktop-client`](https://github.com/open-leash/desktop-client) | Installed desktop app, tray, local relay API, and hook installer. |
-| [`client-api`](https://github.com/open-leash/client-api) | Client-facing API for hooks, plugin pipeline, evaluations, approvals, audit, enrollment, and updates. |
-| [`dashboard-api`](https://github.com/open-leash/dashboard-api) | Admin API for organization setup, policy, users, plugin settings, audit, and usage. |
-| [`dashboard-web`](https://github.com/open-leash/dashboard-web) | Admin/CISO dashboard for organizations. |
-| [`mobile-client`](https://github.com/open-leash/mobile-client) | Mobile approval companion for existing OpenLeash users. |
-| [`cloud-client-api`](https://github.com/open-leash/cloud-client-api) | Thin hosted wrapper around the public client API. |
-| [`cloud-dashboard-api`](https://github.com/open-leash/cloud-dashboard-api) | Thin hosted wrapper around the public dashboard API. |
-| [`cloud-dashboard-web`](https://github.com/open-leash/cloud-dashboard-web) | Thin hosted wrapper around the public dashboard web app. |
+| [`desktop-client`](https://github.com/open-leash/desktop-client) | Installed tray app, local API, and hook installer for connecting developer agents to OpenLeash. |
+| [`client-api`](https://github.com/open-leash/client-api) | Client-facing API for hooks, evaluation, enrollment, mobile approvals, and updates. |
+| [`dashboard-api`](https://github.com/open-leash/dashboard-api) | Admin API for organization setup, users, policy, plugins, audit, and usage. |
+| [`dashboard-web`](https://github.com/open-leash/dashboard-web) | Organization dashboard for identity, deployment, policies, plugins, and audit history. |
+| [`mobile-client`](https://github.com/open-leash/mobile-client) | iOS and Android companion for reviewing and responding to approval requests. |
+| [`local-proxy`](https://github.com/open-leash/local-proxy) | Local AI-agent traffic proxy and policy-enforcement relay. |
+| [`provider-puller`](https://github.com/open-leash/provider-puller) | Scheduler that discovers and normalizes agent activity from hosted enterprise providers. |
+| [`shared`](https://github.com/open-leash/shared) | Shared TypeScript contracts, event schemas, and plugin types used across OpenLeash. |
+| [`docs-web`](https://github.com/open-leash/docs-web) | Source for the public OpenLeash documentation site. |
+
+### First-party plugins
+
+| Repository | What it does |
+|---|---|
+| [`plugin-blast-radius`](https://github.com/open-leash/plugin-blast-radius) | Guards destructive tool calls and operations that affect broad sets of data. |
+| [`plugin-code-scanner`](https://github.com/open-leash/plugin-code-scanner) | Scans AI-generated code for security risks and reports structured findings. |
+| [`plugin-data-leakage-prevention`](https://github.com/open-leash/plugin-data-leakage-prevention) | Detects and masks sensitive data before it is sent in agent prompts. |
+| [`plugin-mcp-scanner`](https://github.com/open-leash/plugin-mcp-scanner) | Inventories MCP servers, tools, and calls for visibility and audit. |
+| [`plugin-rules-enforcer`](https://github.com/open-leash/plugin-rules-enforcer) | Evaluates agent activity against user- and organization-defined rules. |
+| [`plugin-sensitive-access`](https://github.com/open-leash/plugin-sensitive-access) | Detects secret access, environment-file reads, and possible exfiltration attempts. |
+| [`plugin-siem-exporter`](https://github.com/open-leash/plugin-siem-exporter) | Exports OpenLeash events and logs to SIEM destinations. |
+| [`plugin-skill-scanner`](https://github.com/open-leash/plugin-skill-scanner) | Reviews agent skills and reports suspicious or risky behavior. |
+| [`plugin-token-saver`](https://github.com/open-leash/plugin-token-saver) | Reduces prompt token usage before model calls to lower cost and latency. |
 
 ---
 
@@ -196,6 +218,17 @@ OpenLeash is the middle layer: observable, configurable, extensible, and open.
 <a href="https://openleash.com"><img src="https://img.shields.io/badge/Visit-openleash.com-0EA5E9?style=for-the-badge&logo=googlechrome&logoColor=white" /></a>
 <a href="https://docs.openleash.com"><img src="https://img.shields.io/badge/Read-docs.openleash.com-7C3AED?style=for-the-badge&logo=readthedocs&logoColor=white" /></a>
 <a href="https://github.com/open-leash?q=plugin-"><img src="https://img.shields.io/badge/Build-plugins-EC4899?style=for-the-badge&logo=typescript&logoColor=white" /></a>
+
+<br/>
+<br/>
+
+<strong>Support OpenLeash</strong>
+
+<br/>
+<br/>
+
+<a href="https://github.com/orgs/open-leash/repositories"><img src="https://img.shields.io/badge/Star-the%20repos%20you%20use-F59E0B?style=for-the-badge&logo=github&logoColor=white" /></a>
+<a href="https://github.com/open-leash"><img src="https://img.shields.io/badge/Follow-OpenLeash-181717?style=for-the-badge&logo=github&logoColor=white" /></a>
 
 <br/>
 <br/>
